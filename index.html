@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>RNDOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style>
         body {
@@ -18,7 +19,7 @@
             flex-direction: column;
         }
 
-        #game, #guessingGame {
+        #game {
             display: none;
         }
 
@@ -32,6 +33,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-right: 10px;
+            align-self: center;
         }
 
         button {
@@ -42,6 +44,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin: 5px;
         }
 
         button:hover {
@@ -50,7 +53,7 @@
 
         p {
             font-size: 18px;
-            color: #333;
+            color: #9b000d;
         }
 
         #result {
@@ -64,47 +67,56 @@
 <body>
     <div id="introScreen">
         <h1>CONFESSION!!!!</h1>
-        <h1>CODING IS EASY WITH THE HELP OF CHAT GPT AND A LITTLE BIT OF EDITTING:> HHHAHHAHHAHAHAHHAHAHHHAH</h1>
+        <h1>CODING IS EASY WITH THE HELP OF CHAT GPT AND A LITTLE BIT OF EDITING:>  ~HTES</h1>
+        <h1>HAHAHAHAHAHHAHAHAHAHAHHAHAHHAHAHAHAHAH</h1>
         <h1>WANNA PLAY A GAME?</h1>
-        <button onclick="startGame()">EASY</button>
-        
+        <button onclick="setDifficulty(50)">EASY</button>
+        <button onclick="setDifficulty(100)">MEDIUM</button>
+        <button onclick="setDifficulty(500)">LARGE </button>
     </div>
 
     <div id="game">
-        <p>I HAVE A NUMBER IN MIND FROM 1 TO 50</p>
-        <p>TRY TO GUESS</p>
-        <input type="number" id="userGuess" placeholder="1 TO 50 LNG" />
+        <h id="gamePrompt"></h>
+        
+        <P>IF IT SAYS LOWER MEANS THE THE NUMBER IS LOWER THAN YOURE INPUT </P>
+        <p>AND IF HIGHER MEANS THE NUMBER MUST BE HIGHER THAN YOURE INPUT</p>
+        <input type="number" id="userGuess" placeholder="TRY MO BEH" />
         <button onclick="guessNumber()">Guess</button>
         <p id="result"></p>
     </div>
 
     <script>
-        const numberToGuess = Math.floor(Math.random() * 50) + 1;
-        let attempts = 0;
-
-       
-        function startGame() {
+        let numberToGuess; 
+        let attempts = 0; 
+        let maxNumber; 
+        
+        function setDifficulty(max) {
+            maxNumber = max;
+            numberToGuess = Math.floor(Math.random() * maxNumber) + 1; 
+            attempts = 0; 
             document.getElementById('introScreen').style.display = 'none';
             document.getElementById('game').style.display = 'block';
+            document.getElementById("gamePrompt").innerText = `GUESS THE NUMBER I HAVE IN MIND(EVEN THO IM A AI AND DONT HAVE A MIND) 1 TO ${max}.`;
+            document.getElementById("result").innerText = ""; 
         }
-
+        
         function guessNumber() {
-           
-            const userGuess = parseInt(document.getElementById('userGuess').value);
+            const userGuess = parseInt(document.getElementById('userGuess').value); 
             attempts++;
 
+           
             if (isNaN(userGuess)) {
-                document.getElementById("result").innerText = "TADLUNGA:)";
+                document.getElementById("result").innerText = "1" + (max);
                 return;
             }
 
-           
+            
             if (userGuess < numberToGuess) {
-                document.getElementById("result").innerText = "NUBU ";
+                document.getElementById("result").innerText = "HIGHER";
             } else if (userGuess > numberToGuess) {
-                document.getElementById("result").innerText = "TAAS ";
+                document.getElementById("result").innerText = "LOWER";
             } else {
-                document.getElementById("result").innerText = `LATIBAY PAKTAN  MO NGA ${numberToGuess} SA ${attempts} NGA TISTING.`;
+                document.getElementById("result").innerText = `YUDIEE NAPAKTAN YA NA "${numberToGuess}" SA ${attempts} TRY HAHAHA.`;
             }
         }
     </script>
