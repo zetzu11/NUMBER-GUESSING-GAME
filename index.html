@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>RNDOM</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+            color: rgb(197, 19, 19);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #game, #guessingGame {
+            display: none;
+        }
+
+        #introScreen {
+            text-align: center;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #a7287d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #882121;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="introScreen">
+        <h1>CONFESSION!!!!</h1>
+        <h1>CODING IS EASY WITH THE HELP OF CHAT GPT AND A LITTLE BIT OF EDITTING:> HHHAHHAHHAHAHAHHAHAHHHAH</h1>
+        <h1>WANNA PLAY A GAME?</h1>
+        <button onclick="startGame()">EASY</button>
+        
+    </div>
+
+    <div id="game">
+        <p>I HAVE A NUMBER IN MIND FROM 1 TO 50</p>
+        <p>TRY TO GUESS</p>
+        <input type="number" id="userGuess" placeholder="1 TO 50 LNG" />
+        <button onclick="guessNumber()">Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const numberToGuess = Math.floor(Math.random() * 50) + 1;
+        let attempts = 0;
+
+       
+        function startGame() {
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+        }
+
+        function guessNumber() {
+           
+            const userGuess = parseInt(document.getElementById('userGuess').value);
+            attempts++;
+
+            if (isNaN(userGuess)) {
+                document.getElementById("result").innerText = "TADLUNGA:)";
+                return;
+            }
+
+           
+            if (userGuess < numberToGuess) {
+                document.getElementById("result").innerText = "NUBU ";
+            } else if (userGuess > numberToGuess) {
+                document.getElementById("result").innerText = "TAAS ";
+            } else {
+                document.getElementById("result").innerText = `LATIBAY PAKTAN  MO NGA ${numberToGuess} SA ${attempts} NGA TISTING.`;
+            }
+        }
+    </script>
+</body>
+</html>
