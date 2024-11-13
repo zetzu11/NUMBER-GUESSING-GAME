@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>RNDOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
+            color: rgb(197, 19, 19);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #game {
+            display: none;
+        }
+
+        #introScreen {
+            text-align: center;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            align-self: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #a7287d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #882121;
+        }
+
+        p {
+            font-size: 18px;
+            color: #9b000d;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="introScreen">
+        <h1>CONFESSION!!!!</h1>
+        <h1>CODING IS EASY WITH THE HELP OF CHAT GPT AND A LITTLE BIT OF EDITING:>  ~HTES</h1>
+        <h1>HAHAHAHAHAHHAHAHAHAHAHHAHAHHAHAHAHAHAH</h1>
+        <h1>WANNA PLAY A GAME?</h1>
+        <button onclick="setDifficulty(50)">SMALL</button>
+        <button onclick="setDifficulty(100)">MEDIUM</button>
+        <button onclick="setDifficulty(500)">LARGE </button>
+    </div>
+
+    <div id="game">
+        <h id="gamePrompt"></h>
+        
+        <P>IF IT SAYS LOWER MEANS THE THE NUMBER IS LOWER THAN YOURE INPUT </P>
+        <p>AND IF HIGHER MEANS THE NUMBER MUST BE HIGHER THAN YOURE INPUT</p>
+        <input type="number" id="userGuess" placeholder="TRY MO BEH" />
+        <button onclick="guessNumber()">Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let numberToGuess; 
+        let attempts = 0; 
+        let maxNumber; 
+        
+        function setDifficulty(max) {
+            maxNumber = max;
+            numberToGuess = Math.floor(Math.random() * maxNumber) + 1; 
+            attempts = 0; 
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+            document.getElementById("gamePrompt").innerText = `GUESS THE NUMBER I HAVE IN MIND(EVEN THO IM A AI AND DONT HAVE A MIND) 1 TO ${max}.`;
+            document.getElementById("result").innerText = ""; 
+        }
+        
+        function guessNumber() {
+            const userGuess = parseInt(document.getElementById('userGuess').value); 
+            attempts++;
+
+           
+            if (isNaN(userGuess)) {
+                document.getElementById("result").innerText = "1" + (max);
+                return;
+            }
+
+            
+            if (userGuess < numberToGuess) {
+                document.getElementById("result").innerText = "HIGHER";
+            } else if (userGuess > numberToGuess) {
+                document.getElementById("result").innerText = "LOWER";
+            } else {
+                document.getElementById("result").innerText = `YUDIEE NAPAKTAN YA NA "${numberToGuess}" SA ${attempts} TRY HAHAHA...IMISSHER:<<`;
+                
+            }
+        }
+    </script>
+</body>
+</html>
